@@ -30,6 +30,8 @@
 package com.vaklinov.zcashui;
 
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -940,7 +942,7 @@ public class SendCashPanel
 				{
 					urlPrefix = "https://explorer-testnet.zen-solutions.io/tx/";
 				}
-				Desktop.getDesktop().browse(new URL(urlPrefix + TXID).toURI());
+				Desktop.getDesktop().browse(Urls.create(urlPrefix + TXID, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).toURI());
 		    }
 		    
 		    // Call the backup tracker - to remind the user

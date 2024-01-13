@@ -29,6 +29,8 @@
  **********************************************************************************/
 package com.vaklinov.zcashui.msg;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -408,7 +410,7 @@ public class IPFSWrapper
 	private boolean uploadIPFSDataViaPost(File f, String serverURL) 
 		throws MalformedURLException, ProtocolException, IOException
 	{
-		URL obj = new URL(serverURL);
+		URL obj = Urls.create(serverURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 		con.setRequestMethod("POST");
