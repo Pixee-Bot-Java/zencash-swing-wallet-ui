@@ -153,7 +153,8 @@ public class StartupProgressDialog extends JFrame {
         // doDispose(); - will be called later by the main GUI
         
         if (daemonProcess != null) // Shutdown only if we started it
-        Runtime.getRuntime().addShutdownHook(new Thread() {
+        {
+            Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
             	Log.info("Stopping zend because we started it - now it is alive: " + 
                 		           StartupProgressDialog.this.isAlive(daemonProcess));
@@ -191,6 +192,7 @@ public class StartupProgressDialog extends JFrame {
                 }
             }
         });
+        }
         
     }
     
