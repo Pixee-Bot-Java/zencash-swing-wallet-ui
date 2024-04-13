@@ -29,6 +29,8 @@
  **********************************************************************************/
 package com.vaklinov.zcashui;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -213,7 +215,7 @@ public class AddressTable
 							urlPrefix = "https://explorer-testnet.zen-solutions.io/address/";
 						}
 						
-						Desktop.getDesktop().browse(new URL(urlPrefix + address).toURI());
+						Desktop.getDesktop().browse(Urls.create(urlPrefix + address, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).toURI());
 					} catch (Exception ex)
 					{
 						Log.error("Unexpected error: ", ex);
